@@ -17,11 +17,10 @@ public class JobSearchSystem : MonoBehaviour
         _managedPawns.Add(pawn);
     }
 
-    void Update()
+        void Update()
     {
         if (_jobQueue.Jobs.Count == 0) return;
-
-        // Оптимизация: ищем только одну свободную пешку, а не создаем целый список
+        
         var idlePawn = _managedPawns.FirstOrDefault(p => p.Jobs.IsIdle);
         if (idlePawn == null) return;
 
@@ -33,44 +32,28 @@ public class JobSearchSystem : MonoBehaviour
             switch (ticket.JobType)
             {
                 case JobDefOf.Cook:
-                    // --- ИСПРАВЛЕНИЕ ---
-                    // Проверяем, что рецепт существует ПЕРЕД созданием задачи
                     if (ModManager.Instance.AllRecipes.ContainsKey(ticket.RecipeId))
                     {
-                        newJob = new Job(null); // Цели пока нет, пешка будет работать "на месте"
+                        // --- ИСПРАВЛЕНИЕ ---
+                        // Создаем задачу БЕЗ цели, так как она не нужна для готовки "на месте".
+                        newJob = new Job();
+                        // Передаем ID рецепта в конструктор исполнителя.
                         newJob.Driver = new JobDriver_Cook(ticket.RecipeId);
                     }
                     break;
                 case JobDefOf.Haul:
-                    newJob = new Job(ticket.TargetA); // Передаем цель в задачу
-                    newJob.TargetB = ticket.TargetB;
+                    // --- ИСПРАВЛЕНИЕ ---
+                    // Создаем задачу, ПЕРЕДАВАЯ ей цели из билета.
+                    newJob = new Job(ticket.TargetA, ticket.TargetB);
                     newJob.Driver = new JobDriver_Haul();
-                    break;
-                case JobDefOf.Build:
-                    if (ModManager.Instance.AllRecipes.ContainsKey(ticket.RecipeId))
-                    {
-                        newJob = new Job(null);
-                        newJob.Driver = new JobDriver_Build(ticket.RecipeId);
-                    }
-                    break;
-                case JobDefOf.Smith:
-                    if (ModManager.Instance.AllRecipes.ContainsKey(ticket.RecipeId))
-                    {
-                        newJob = new Job(null);
-                        newJob.Driver = new JobDriver_Smith(ticket.RecipeId);
-                    }
                     break;
             }
 
             if (newJob != null)
             {
-                _jobQueue.GetJob(); // Убираем билет из очереди
-
-                // Передаем пешку и задачу в исполнителя
+                _jobQueue.GetJob();
                 newJob.Driver.Job = newJob;
                 newJob.Driver.Setup(idlePawn);
-
-                // Назначаем пешке полностью собранную задачу
                 idlePawn.Jobs.StartJob(newJob);
             }
         }

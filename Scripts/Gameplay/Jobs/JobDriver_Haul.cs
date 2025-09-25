@@ -9,6 +9,13 @@ public class JobDriver_Haul : JobDriver
 
     public override void Tick()
     {
+        if (Job.TargetA == null)
+        {
+            Debug.LogError($"JobDriver_Haul не может работать: TargetA is null! Завершаю задачу.");
+            OnFinish();
+            return;
+        }
+
         switch (_currentStep)
         {
             case HaulStep.GoToItem:
