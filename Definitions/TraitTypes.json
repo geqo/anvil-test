@@ -1,0 +1,43 @@
+[
+  {
+    "id": "glutton",
+    "name": "Обжора",
+    "description": "Этот поселенец ест намного больше, чем остальные.",
+    "modifiers": [
+      {
+        "stat": "hunger_decay_rate",
+        "op": "multiply",
+        "value": 1.5
+      }
+    ]
+  },
+  {
+    "id": "insomniac",
+    "name": "Бессонница",
+    "description": "Этому поселенцу нужно меньше энергии для нормальной жизни.",
+    "modifiers": [
+      {
+        "stat": "energy_decay_rate",
+        "op": "multiply",
+        "value": 0.75
+      }
+    ]
+  },
+  {
+    "id": "nervous",
+    "name": "Нервный",
+    "description": "Постоянное беспокойство заставляет этого поселенца быстрее уставать и больше есть.",
+    "modifiers": [
+      {
+        "stat": "energy_decay_rate",
+        "op": "multiply",
+        "value": 1.2
+      },
+      {
+        "stat": "hunger_decay_rate",
+        "op": "multiply",
+        "value": 1.1
+      }
+    ]
+  }
+]

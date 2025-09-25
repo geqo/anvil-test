@@ -1,0 +1,65 @@
+[
+  {
+    "id": "torso",
+    "name": "Торс",
+    "maxHp": 40,
+    "isVital": true,
+    "isNatural": true
+  },
+  {
+    "id": "head",
+    "name": "Голова",
+    "maxHp": 20,
+    "isVital": true,
+    "isNatural": true
+  },
+  {
+    "id": "heart",
+    "name": "Сердце",
+    "maxHp": 15,
+    "isVital": true,
+    "isNatural": true
+  },
+  {
+    "id": "left_lung",
+    "name": "Левое легкое",
+    "maxHp": 15,
+    "isVital": true,
+    "isNatural": true
+  },
+  {
+    "id": "right_lung",
+    "name": "Правое легкое",
+    "maxHp": 15,
+    "isVital": true,
+    "isNatural": true
+  },
+  {
+    "id": "left_arm",
+    "name": "Левая рука",
+    "maxHp": 25,
+    "isVital": false,
+    "isNatural": true
+  },
+  {
+    "id": "right_arm",
+    "name": "Правая рука",
+    "maxHp": 25,
+    "isVital": false,
+    "isNatural": true
+  },
+  {
+    "id": "left_leg",
+    "name": "Левая нога",
+    "maxHp": 25,
+    "isVital": false,
+    "isNatural": true
+  },
+  {
+    "id": "right_leg",
+    "name": "Правая нога",
+    "maxHp": 25,
+    "isVital": false,
+    "isNatural": true
+  }
+]

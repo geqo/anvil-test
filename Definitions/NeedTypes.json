@@ -1,0 +1,14 @@
+[
+  {
+    "id": "hunger",
+    "name": "Голод",
+    "maxValue": 100,
+    "decayPerSecond": 0.4
+  },
+  {
+    "id": "energy",
+    "name": "Энергия",
+    "maxValue": 100,
+    "decayPerSecond": 0.25
+  }
+]
