@@ -1,0 +1,53 @@
+[
+  {
+    "id": "cook_simple_meal",
+    "jobType": "Cook",
+    "ingredients": [ { "itemId": "raw_food", "amount": 2 } ],
+    "resultItemId": "cooked_meal",
+    "workAmount": 3,
+    "skillUsed": "cooking"
+  },
+{
+    "id": "build_campfire",
+    "jobType": "Build",
+    "ingredients": [
+      { "itemId": "resource_wood", "amount": 10 }
+    ],
+    "resultItemId": "building_campfire",
+    "workAmount": 80,
+    "skillUsed": "construction"
+  },
+  {
+    "id": "build_cupboard",
+    "jobType": "Build",
+    "ingredients": [
+      {
+        "materialCosts": [
+          { "stuffCategory": "Woody", "amount": 20 },
+          { "stuffCategory": "Stony", "amount": 25 },
+          { "stuffCategory": "Metallic", "amount": 15 }
+        ]
+      }
+    ],
+    "resultItemId": "building_cupboard",
+    "workAmount": 150,
+    "skillUsed": "construction"
+  },
+  {
+    "id": "craft_sword",
+    "jobType": "Smith", // (Пример нового типа работы)
+    "ingredients": [
+      {
+        "materialCosts": [
+          { "stuffCategory": "Woody", "amount": 30 },
+          { "stuffCategory": "Stony", "amount": 40 },
+          { "stuffCategory": "Metallic", "amount": 25 },
+          { "stuffCategory": "Precious", "amount": 45 }
+        ]
+      }
+    ],
+    "resultItemId": "weapon_sword",
+    "workAmount": 250,
+    "skillUsed": "crafting" // (Пример нового навыка)
+  }
+]

@@ -1,0 +1,85 @@
+[
+  {
+    "id": "glutton",
+    "name": "Обжора",
+    "description": "Этот поселенец ест намного больше, чем остальные.",
+    "modifiers": [
+      {
+        "stat": "hunger_decay_rate",
+        "op": "multiply",
+        "value": 1.5
+      }
+    ]
+  },
+  {
+    "id": "insomniac",
+    "name": "Бессонница",
+    "description": "Этому поселенцу нужно меньше энергии для нормальной жизни.",
+    "modifiers": [
+      {
+        "stat": "energy_decay_rate",
+        "op": "multiply",
+        "value": 0.75
+      }
+    ]
+  },
+  {
+    "id": "nervous",
+    "name": "Нервный",
+    "description": "Постоянное беспокойство заставляет этого поселенца быстрее уставать и больше есть.",
+    "modifiers": [
+      {
+        "stat": "energy_decay_rate",
+        "op": "multiply",
+        "value": 1.2
+      },
+      {
+        "stat": "hunger_decay_rate",
+        "op": "multiply",
+        "value": 1.1
+      }
+    ]
+  },
+  {
+    "id": "workaholic",
+    "name": "Трудоголик",
+    "description": "Этот поселенец обожает работать. Он работает быстрее, и его настроение улучшается во время работы, но падает во время безделья.",
+    "modifiers": [
+      {
+        "stat": "global_work_speed",
+        "op": "multiply",
+        "value": 1.2
+      }
+    ]
+  },
+  {
+    "id": "gourmand",
+    "name": "Гурман",
+    "description": "Этот поселенец слишком высокого мнения о своих кулинарных талантах, чтобы заниматься простой готовкой.",
+    "disabledJobTypes": [ "Cook" ]
+  },
+  {
+    "id": "tough",
+    "name": "Крепкий",
+    "description": "Этот поселенец очень вынослив и получает меньше урона в бою.",
+    "modifiers": [
+      {
+        "stat": "damage_taken_multiplier",
+        "op": "multiply",
+        "value": 0.8
+      }
+    ]
+  },
+  {
+    "id": "fast_walker",
+    "name": "Быстроход",
+    "description": "Этот поселенец передвигается значительно быстрее остальных.",
+    "modifiers": [
+      {
+        "stat": "move_speed",
+        "op": "multiply",
+        "value": 1.4
+      }
+    ]
+  }
+]

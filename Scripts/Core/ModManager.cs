@@ -14,6 +14,9 @@ public class ModManager : MonoBehaviour
     public Dictionary<string, TraitDefinition> AllTraits { get; private set; } = new Dictionary<string, TraitDefinition>();
     public Dictionary<string, RecipeDefinition> AllRecipes { get; private set; } = new Dictionary<string, RecipeDefinition>();
     public Dictionary<string, BodyPartDefinition> AllBodyParts { get; private set; } = new Dictionary<string, BodyPartDefinition>();
+    public Dictionary<string, BodyLayoutDefinition> AllBodyLayouts { get; private set; } = new Dictionary<string, BodyLayoutDefinition>();
+    public Dictionary<string, PawnKindDefinition> AllPawnKinds { get; private set; } = new Dictionary<string, PawnKindDefinition>();
+    public Dictionary<string, SkillDefinition> AllSkills { get; private set; } = new Dictionary<string, SkillDefinition>();
 
     void Awake()
     {
@@ -40,7 +43,7 @@ public class ModManager : MonoBehaviour
         }
 
         Debug.Log($"--- Загрузка завершена ---");
-        Debug.Log($"Предметов:{AllItems.Count}, Рецептов:{AllRecipes.Count}, Потребностей:{AllNeeds.Count}, Черт:{AllTraits.Count}, Частей тела:{AllBodyParts.Count}");
+        Debug.Log($"Предметов: {AllItems.Count}, Рецептов: {AllRecipes.Count}, Потребностей: {AllNeeds.Count}, Черт: {AllTraits.Count}, Частей тела: {AllBodyParts.Count}, Схем тела: {AllBodyLayouts.Count}, Видов существ: {AllPawnKinds.Count}, Навыков: {AllSkills.Count}");
     }
 
     private void LoadModContent(string modPath)
@@ -54,6 +57,9 @@ public class ModManager : MonoBehaviour
         LoadDefinitions<NeedDefinition>(modPath, "NeedTypes.json", AllNeeds, def => def.id, "потребность");
         LoadDefinitions<TraitDefinition>(modPath, "TraitTypes.json", AllTraits, def => def.id, "черту");
         LoadDefinitions<BodyPartDefinition>(modPath, "BodyParts.json", AllBodyParts, def => def.id, "часть тела");
+        LoadDefinitions<BodyLayoutDefinition>(modPath, "BodyLayouts.json", AllBodyLayouts, def => def.id, "схему тела");
+        LoadDefinitions<PawnKindDefinition>(modPath, "PawnKinds.json", AllPawnKinds, def => def.id, "вид существа");
+        LoadDefinitions<SkillDefinition>(modPath, "Skills.json", AllSkills, def => def.id, "навык");
 
         // --- ЗАГРУЗКА КОДА (DLL) ---
         string codePath = Path.Combine(modPath, "Assemblies");

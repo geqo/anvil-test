@@ -20,10 +20,27 @@ public class Pawn_HealthTracker
         GlobalHediffs = new List<Hediff>();
         BodyParts = new Dictionary<string, BodyPartInstance>();
 
-        // Создаем все части тела на основе определений из ModManager
-        foreach (var partDef in ModManager.Instance.AllBodyParts.Values)
+        // 1. Получаем схему тела пешки из ModManager.
+        if (ModManager.Instance.AllBodyLayouts.TryGetValue(_pawn.KindDef.bodyLayoutId, out BodyLayoutDefinition layoutDef))
         {
-            BodyParts.Add(partDef.id, new BodyPartInstance(partDef));
+            // 2. Итерируем только по тем частям тела, которые указаны в схеме.
+            foreach (string partId in layoutDef.bodyParts)
+            {
+                // 3. Находим полное определение части тела по ее ID.
+                if (ModManager.Instance.AllBodyParts.TryGetValue(partId, out BodyPartDefinition partDef))
+                {
+                    // 4. Создаем экземпляр этой части тела и добавляем пешке.
+                    BodyParts.Add(partDef.id, new BodyPartInstance(partDef));
+                }
+                else
+                {
+                    UnityEngine.Debug.LogWarning($"В схеме тела '{layoutDef.id}' указана несуществующая часть тела: '{partId}'");
+                }
+            }
+        }
+        else
+        {
+            UnityEngine.Debug.LogError($"Не найдена схема тела с ID: '{_pawn.KindDef.bodyLayoutId}' для пешки '{_pawn.Name}'!");
         }
     }
 

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "humanlike",
+    "pawnType": "Pawn",
+    "bodyLayoutId": "humanoid",
+    "baseCarryCapacity": 35.0,
+    "availableSkills": [ "cooking", "medicine", "construction", "crafting" ],
+  },
+  {
+    "id": "catlike",
+    "pawnType": "Pawn",
+    "bodyLayoutId": "catlike",
+    "baseCarryCapacity": 25.0,
+    "availableSkills": [ "cooking", "medicine", "construction", "crafting" ]
+  },
+  {
+    "id": "animal_cat",
+    "pawnType": "Animal",
+    "bodyLayoutId": "catlike",
+    "baseCarryCapacity": 2.0,
+    "availableSkills": []
+  }
+]

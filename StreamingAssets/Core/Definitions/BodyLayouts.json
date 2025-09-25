@@ -1,0 +1,31 @@
+[
+  {
+    "id": "humanoid",
+    "bodyParts": [
+      "torso",
+      "head",
+      "heart",
+      "left_lung",
+      "right_lung",
+      "left_arm",
+      "right_arm",
+      "left_leg",
+      "right_leg"
+    ]
+  },
+  {
+    "id": "catlike",
+    "bodyParts": [
+      "torso",
+      "head",
+      "heart",
+      "left_lung",
+      "right_lung",
+      "left_arm",
+      "right_arm",
+      "left_leg",
+      "right_leg",
+      "tail"
+    ]
+  },
+]

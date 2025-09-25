@@ -1,9 +1,0 @@
-[
-  {
-    "id": "cook_simple_meal",
-    "ingredients": [ { "itemId": "raw_food", "amount": 2 } ],
-    "resultItemId": "cooked_meal",
-    "workTime": 10,
-    "skillUsed": "cooking"
-  },
-]

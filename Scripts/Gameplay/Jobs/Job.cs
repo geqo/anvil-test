@@ -1,11 +1,17 @@
-// Job.cs
+// Scripts/Gameplay/Jobs/Job.cs
+
+using UnityEngine;
+
 public class Job
 {
-    public string JobType { get; private set; } // "CookMeal", "HaulItem"
-    // Дополнительные данные, например, цель (плита), ингредиенты и т.д.
+    public JobDriver Driver { get; set; }
 
-    public Job(string jobType)
+    // Данные для задачи
+    public Entity TargetA { get; set; } // Основная цель (например, предмет для переноски)
+    public Vector2Int TargetB { get; set; } // Вторичная цель (например, точка назначения)
+
+    public Job(Entity targetA = null)
     {
-        JobType = jobType;
+        this.TargetA = targetA;
     }
 }

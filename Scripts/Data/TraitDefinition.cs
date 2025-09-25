@@ -14,4 +14,5 @@ public class TraitDefinition
     public string name;
     public string description;
     public List<Modifier> modifiers;
+    public List<string> disabledJobTypes;
 }

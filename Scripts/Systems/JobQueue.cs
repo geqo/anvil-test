@@ -6,7 +6,7 @@ public class JobQueue : MonoBehaviour
     // 1. Создаем Singleton для глобального доступа
     public static JobQueue Instance { get; private set; }
 
-    public Queue<Job> Jobs { get; private set; } = new Queue<Job>();
+    public Queue<JobTicket> Jobs { get; private set; } = new Queue<JobTicket>();
 
     void Awake()
     {
@@ -19,13 +19,13 @@ public class JobQueue : MonoBehaviour
         Instance = this;
     }
 
-    public void AddJob(Job job)
+    public void AddJob(JobTicket jobTicket)
     {
-        Jobs.Enqueue(job);
-        Debug.Log($"Новая задача добавлена в очередь: {job.JobType}");
+        Jobs.Enqueue(jobTicket);
+        Debug.Log($"Новая задача (рецепт: {jobTicket.RecipeId}) добавлена в очередь.");
     }
 
-    public Job GetJob()
+    public JobTicket GetJob()
     {
         if (Jobs.Count > 0)
         {

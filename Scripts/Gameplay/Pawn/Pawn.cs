@@ -2,52 +2,59 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// Pawn теперь является "тупым" контейнером данных, связывающим все свои компоненты.
-public class Pawn
+public class Pawn : Entity
 {
-    // --- ИДЕНТИФИКАЦИЯ ---
     public string Name { get; private set; }
     private static int _pawnCounter = 0;
 
+    // --- ССЫЛКА НА ОПРЕДЕЛЕНИЕ ---
+    public PawnKindDefinition KindDef { get; private set; }
+
     // --- КОМПОНЕНТЫ-ДАННЫЕ ---
-    public Pawn_HealthTracker Health { get; private set; } // Отвечает за здоровье
-    public Pawn_NeedsTracker Needs { get; private set; }   // Отвечает за потребности
-    // Сюда в будущем можно будет добавить Pawn_JobTracker, Pawn_MindStateTracker и т.д.
+    public Pawn_HealthTracker Health { get; private set; }
+    public Pawn_NeedsTracker Needs { get; private set; }
+    public Pawn_JobTracker Jobs { get; private set; }
+    public Pawn_SkillTracker Skills { get; private set; }
+    public Pawn_InventoryTracker Inventory { get; private set; }
 
     // --- ВНЕШНИЕ ДАННЫЕ (ОПРЕДЕЛЕНИЯ) ---
     public List<TraitDefinition> Traits { get; private set; }
-    public Dictionary<string, int> Skills { get; private set; }
 
-    public Pawn(List<TraitDefinition> assignedTraits)
+    // Конструктор теперь принимает ID вида, а не просто список черт
+    public Pawn(string pawnKindId, List<TraitDefinition> assignedTraits)
     {
+        if (!ModManager.Instance.AllPawnKinds.TryGetValue(pawnKindId, out var kindDef))
+        {
+            Debug.LogError($"Не удалось создать пешку: не найден PawnKindDefinition с ID '{pawnKindId}'");
+            return;
+        }
+
         _pawnCounter++;
-        Name = $"Пешка {_pawnCounter}";
+        Name = $"Пешка {_pawnCounter} ({kindDef.id})"; // В имя добавим вид для наглядности
+        KindDef = kindDef;
         Traits = assignedTraits;
 
-        // Инициализируем компоненты-данные
+        // Компоненты-данные теперь могут использовать KindDef для своей инициализации
         Health = new Pawn_HealthTracker(this);
         Needs = new Pawn_NeedsTracker(this);
-
-        // Инициализируем навыки (пока что заглушка)
-        Skills = new Dictionary<string, int> { { "cooking", 1 } };
+        Jobs = new Pawn_JobTracker();
+        Skills = new Pawn_SkillTracker(this);
+        Inventory = new Pawn_InventoryTracker(this);
 
         Debug.Log($"Создана новая пешка '{Name}' с чертами: {string.Join(", ", Traits.Select(t => t.name))}");
     }
 
-    // --- ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ ---
     public bool IsDead()
     {
-        // Теперь смерть определяется состоянием здоровья
         return Health.IsDead;
     }
 
     public string GetStatus()
     {
         if (IsDead()) return $"Пешка {Name} мертва.";
-
-        // Собираем статусы из всех компонентов
         return $"--- Статус пешки '{Name}' ---\n" +
                $"{Health.GetStatus()}\n" +
-               $"{Needs.GetStatus()}";
+               $"{Needs.GetStatus()}" +
+               $"{Skills.GetStatus()}";
     }
 }

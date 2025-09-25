@@ -1,0 +1,147 @@
+[
+	{
+	  "id": "weapon_pistol",
+	  "name": "Простой Пистолет",
+	  "description": "Надежное, но слабое оружие.",
+	  "damage": 12.0,
+	  "fireRate": 2.5,
+	  "weight": 0.5
+	},
+	{
+	  "id": "weapon_sword",
+	  "name": "Меч",
+	  "description": "Простое клинковое оружие. Его эффективность сильно зависит от материала.",
+	  "weight": 1.0, // Вес рукояти и базовой структуры
+	  "stackLimit": 1,
+	  "isMadeOfStuff": true // Ключевой флаг!
+	},
+	{
+	  "id": "raw_food",
+	  "name": "Сырая еда",
+	  "isIngredient": true,
+	  "weight": 0.1,
+	  "stackLimit": 50
+	},
+	{
+	  "id": "cooked_meal",
+	  "name": "Простое блюдо",
+	  "weight": 0.4,
+	  "stackLimit": 50,
+	  "food": {
+	    "satisfiesNeed": "hunger",
+	    "amount": 50
+	  },
+	},
+	{
+	  "id": "entity_tree",
+	  "name": "Дерево",
+	  "description": "Источник древесины.",
+	  "weight": 9999,
+	  "stackLimit": 1,
+	  "canBeMoved": false,
+	  "isMineable": true,
+	  "mineYield": [
+		{
+		  "itemId": "resource_wood",
+		  "minAmount": 15,
+		  "maxAmount": 25
+		}
+	  ]
+	},
+	{
+	  "id": "building_campfire",
+	  "name": "Костёр",
+	  "description": "Простое место для приготовления пищи. Требует древесину для постройки.",
+	  "weight": 10,
+	  "stackLimit": 1,
+	  "canBeMoved": false,
+	  "isDeconstructible": true,
+	  "deconstructYield": [
+		{
+		  "itemId": "resource_wood",
+		  "minAmount": 3,
+		  "maxAmount": 5
+		}
+	  ]
+	},
+	{
+	  "id": "resource_wood",
+	  "name": "Древесина",
+	  "description": "Основной строительный материал.",
+	  "weight": 0.5,
+	  "stackLimit": 75,
+	  "isIngredient": true,
+	  "isMaterial": true,
+	  "stuff": {
+		"stuffCategory": "Woody",
+		"statModifiers": {
+		  "max_hp_multiplier": 0.8
+		}
+	  }
+	},
+	{
+	  "id": "resource_stone",
+	  "name": "Камень",
+	  "description": "Прочный, но тяжелый строительный материал.",
+	  "weight": 1.2,
+	  "stackLimit": 75,
+	  "isIngredient": true,
+	  "isMaterial": true,
+	  "stuff": {
+		"stuffCategory": "Stony",
+		"statModifiers": {
+		  "max_hp_multiplier": 1.5
+		}
+	  }
+	},
+	{
+	  "id": "resource_iron",
+	  "name": "Железо",
+	  "description": "Прочный и универсальный металл.",
+	  "weight": 2.0,
+	  "stackLimit": 50,
+	  "isIngredient": true,
+	  "isMaterial": true,
+	  "stuff": {
+		"stuffCategory": "Metallic",
+		"statModifiers": {
+		  "max_hp_multiplier": 2.0
+		}
+	  }
+	},
+	{
+	  "id": "resource_gold",
+	  "name": "Золото",
+	  "description": "Красивый, но мягкий и тяжелый драгоценный металл.",
+	  "weight": 3.5,
+	  "stackLimit": 50,
+	  "isIngredient": true,
+	  "isMaterial": true,
+	  "stuff": {
+		"stuffCategory": "Precious",
+		"statModifiers": {
+		  "max_hp_multiplier": 0.5
+		  // В будущем можно добавить "beauty_multiplier": 2.5
+		}
+	  }
+	},
+	{
+	  "id": "building_cupboard",
+	  "name": "Шкаф",
+	  "description": "Место для хранения вещей. Можно перемещать.",
+	  "weight": 20,
+	  "stackLimit": 1,
+	  "canBeMoved": true,
+	  "isDeconstructible": true,
+	  "deconstructYield": [
+		{
+		  "itemId": "resource_wood",
+		  "minAmount": 10,
+		  "maxAmount": 15
+		}
+	  ],
+	  "storage": {
+    	"maxWeight": 150
+  	  }
+	}
+]

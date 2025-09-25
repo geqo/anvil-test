@@ -61,5 +61,12 @@
     "maxHp": 25,
     "isVital": false,
     "isNatural": true
+  },
+  {
+    "id": "tail",
+    "name": "Хвост",
+    "maxHp": 10,
+    "isVital": false,
+    "isNatural": true
   }
 ]
